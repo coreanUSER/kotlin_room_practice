@@ -1,0 +1,20 @@
+package com.stn.room.db.entity
+
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import java.util.*
+
+// tableName 을 입력하지 않으면 Class 명을 Table 명으로 사용하게 된다.
+@Entity(tableName = "content")
+data class ContentEntity (
+    @PrimaryKey(autoGenerate = true) val id: Long?,
+    // ColumnInfo 는 생략가능
+    @ColumnInfo(name = "title") var title: String,
+    @ColumnInfo(name = "content") var content: String,
+    @ColumnInfo(name = "chooseDate") var chooseDate: String,
+    @ColumnInfo(name = "created") var created: String? = Date().toString(),
+    @ColumnInfo(name = "update") var update: String? = Date().toString()
+){
+    constructor(): this(null, "", "", "","","")
+}
