@@ -3,6 +3,7 @@ package com.stn.room
 import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.stn.room.db.AppDatabase
 import com.stn.room.db.dao.ContentDao
 import com.stn.room.db.entity.ContentEntity
@@ -16,26 +17,48 @@ class InsertActivity : AppCompatActivity() {
         setContentView(R.layout.activity_insert)
 
         dateButton.setOnClickListener {
-            showDate()
+            showDatePickerDialog()
         }
 
         saveButton.setOnClickListener {
-            val newContent = ContentEntity()
-            newContent.title = titleInput.text.toString()
-            newContent.content = contentInput.text.toString()
-            newContent.chooseDate = dateInput.text.toString()
+            var title: String? = titleInput.text.toString()
+            var content: String? = contentInput.text.toString()
+            var chooseDate: String? = dateInput.text.toString()
 
-            val r = Runnable {
-                var contentDb = AppDatabase.getInstance(this)
-                contentDb?.contentDao().insert(newContent)
+            val newContent = ContentEntity()
+            if(title != null) {
+                newContent.title = title
+            } else {
+                Toast.makeText(this, "Title is null", Toast.LENGTH_SHORT).show()
             }
 
-            val thread = Thread(r)
-            thread.start()
+            if(content != null) {
+                newContent.content = content
+            } else {
+                Toast.makeText(this, "Content is null", Toast.LENGTH_SHORT).show()
+            }
+
+            if(chooseDate != null) {
+                newContent.chooseDate = chooseDate
+            } else {
+                Toast.makeText(this, "ChooseDate is null", Toast.LENGTH_SHORT).show()
+            }
+
+            if(title != null && content != null && chooseDate != null) {
+                val r = Runnable {
+                    var contentDb = AppDatabase.getInstance(this)
+                    contentDb?.contentDao()?.insert(newContent)!!
+                }
+
+                val thread = Thread(r)
+                thread.start()
+            } else {
+                Toast.makeText(this, "Input Data Is Null", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
-    private fun showDate() {
+    private fun showDatePickerDialog() {
         val cal: Calendar = Calendar.getInstance()
         val year: Int = cal.get(Calendar.YEAR)
         val month: Int = cal.get(Calendar.MONTH)
