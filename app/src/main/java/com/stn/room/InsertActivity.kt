@@ -45,7 +45,7 @@ class InsertActivity : AppCompatActivity() {
             val editTitle = findViewById<EditText>(R.id.insert_editTitle).text.toString()
             val editContent = findViewById<EditText>(R.id.insert_editContent).text.toString()
             val chooseDate = findViewById<EditText>(R.id.insert_editChooseDate).text.toString()
-            val content = ContentEntity(0, editTitle, editContent, chooseDate, Date(), Date())
+            val content = ContentEntity(0, editTitle, editContent, chooseDate, Date().toString(), Date().toString())
             val contentViewModel = ViewModelProviders.of(this).get(ContentViewModel::class.java)
             contentViewModel.insert(content) { finish() }
         }

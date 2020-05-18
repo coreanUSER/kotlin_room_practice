@@ -14,6 +14,6 @@ data class ContentEntity (
     @ColumnInfo(name = "title") var title: String = "",
     @ColumnInfo(name = "content") var content: String = "",
     @ColumnInfo(name = "chooseDate") var chooseDate: String = "",
-    @ColumnInfo(name = "created") var created: Date = Date(),
-    @ColumnInfo(name = "update") var update: Date = Date()
+    @ColumnInfo(name = "created") var created: String = Date().toString(),
+    @ColumnInfo(name = "update") var update: String = Date().toString()
 )

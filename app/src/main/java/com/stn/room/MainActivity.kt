@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
                 dataSet.clear()
                 dataSet.addAll(it!!)
             } else {
-                var contentEntity: ContentEntity = ContentEntity(0, "Sample Title", "Sample Content", Date().toString(), Date(), Date())
+                var contentEntity: ContentEntity = ContentEntity(0, "Sample Title", "Sample Content", Date().toString(), Date().toString(), Date().toString())
                 dataSet.add(contentEntity)
             }
             recyclerView.adapter = MainRecyclerAdapter(dataSet)

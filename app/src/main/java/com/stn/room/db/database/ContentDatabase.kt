@@ -1,11 +1,13 @@
 package com.stn.room.db.database
 
 import android.content.Context
+import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
 import com.stn.room.db.dao.ContentDao
+import com.stn.room.db.entity.ContentEntity
 
+@Database(entities = arrayOf(ContentEntity::class), version = 1, exportSchema = false)
 abstract class ContentDatabase : RoomDatabase() {
     abstract fun contentDao(): ContentDao
 
