@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.stn.room.adapter.MainRecyclerAdapter
 import com.stn.room.db.entity.ContentEntity
 import com.stn.room.db.viewModel.ContentViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -34,7 +35,8 @@ class MainActivity : AppCompatActivity() {
                 var contentEntity: ContentEntity = ContentEntity(0, "Sample Title", "Sample Content", Date().toString(), Date().toString(), Date().toString())
                 dataSet.add(contentEntity)
             }
-            recyclerView.adapter = MainRecyclerAdapter(dataSet)
+            recyclerView.adapter =
+                MainRecyclerAdapter(dataSet)
         })
 
         val fab = findViewById<FloatingActionButton>(R.id.floatingActionButton)
